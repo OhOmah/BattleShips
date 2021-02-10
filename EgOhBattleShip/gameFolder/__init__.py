@@ -10,3 +10,24 @@ Salvo = number of your ships you have left (use count)/1 shot(easy)
     "X" marks hit
 4 Sink 'em all! (Victory Condition)
 """
+class EgohBattleShipGame:
+
+    
+
+    def __init__(self):
+        
+        self.ship = {"Type" : "AircraftCarrier",
+                     "MaxHits": 5,
+                     "CurrentDamage": 0}
+
+    
+    def createACCarrier(self):
+
+        return self.ship
+
+    # a ship is a dict
+    # type:
+    # maxHits: 
+    # currentHealth: 
+
+

@@ -18,6 +18,7 @@ class TestEgohBattleShip(unittest.TestCase):
         # 2 x Submarine, Size 1
 
 
+
     
     def testCreateAircraftCarrier(self):
 
@@ -25,8 +26,15 @@ class TestEgohBattleShip(unittest.TestCase):
         # position on the board - extends on legal positions;
         #   not overlapping with other ships
         # remaining hits?
-        acCarrier = EgohBattleShip.AircraftCarrier()
-        self.assertEqual(acCarrier.totalHits, 5)
+        game = gameFolder.EgohBattleShipGame()
+        acCarrier = gameFolder.EgohBattleShipGame.createACCarrier(game)
+
+        #test the maxhits of a Aircraft Carrier
+        self.assertEqual(acCarrier["MaxHits"], 5)
+        self.assertEqual(acCarrier["CurrentDamage"], 0)
+        self.assertEqual(acCarrier["Type"], "AircraftCarrier")
+    
+    def testDamageShip(self):
         
 
 
