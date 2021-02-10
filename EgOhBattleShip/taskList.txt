@@ -1,0 +1,34 @@
+
+# Create Whimsical Architectural Doc
+    # Choose Tech stack for: Game Framework; Data persistence; Deployment
+    Add Testing Framework to Architectural doc - unittest
+
+Add Architectural Doc to Repo 
+
+ # Create GitHub repo
+
+Create Feature Task List
+    (Read Games Rules Wiki) 
+    Rules Features
+    DS (stats) Features
+
+Create Whismical? UML? Game Architecture (OOP)
+    Classes 
+
+
+Tests 
+    # Setup test env (unittest)
+    From Feature Tasks, use TDD to write code
+    Create Game - grid size, 2 players per game
+    Create Player - DS stats 
+    Create Board - 10x10 (letters, 1-10)
+    Create Ships - 1(5) 1(4) 1(3) 2(2) 2(1)
+        # 1 x Aircraft Carrier, Size 5
+        1 x Battleship, Size 4
+        1 x Cruiser, Size 3
+        2 x Destroyer, Size 2
+        2 x Submarine, Size 1
+
+    Damage Ships 
+
+Create GitHub Repo
