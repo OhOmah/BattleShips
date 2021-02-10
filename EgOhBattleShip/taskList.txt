@@ -1,0 +1,26 @@
+
+# Create Whimsical Architectural Doc
+    # Choose Tech stack for: Game Framework; Data persistence; Deployment
+
+Add Architectural Doc to Repo 
+
+ # Create GitHub repo
+
+Create Feature Task List
+    (Read Games Rules Wiki) 
+    Rules Features
+    DS (stats) Features
+
+Create Whismical? UML? Game Architecture (OOP)
+    Classes 
+
+
+Tests 
+    From Feature Tasks, use TDD to write code
+    Create Game - grid size, 2 players per game
+    Create Player - DS stats 
+    Create Board - 10x10 (letters, 1-10)
+    Create Ships - 1(5) 1(4) 1(3) 2(2) 2(1)
+
+
+Create GitHub Repo
