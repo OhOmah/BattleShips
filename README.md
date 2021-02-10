@@ -1,2 +1,2 @@
 # BattleShips
-Week Long Challenge to build a battleship like game with python. 
+A week long challenge to build a battleship like game with python. 
