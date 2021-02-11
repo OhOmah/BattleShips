@@ -60,6 +60,18 @@ SCREEN_WIDTH = 1024
 SCREEN_HEIGHT = 768
 SCREEN_TITLE = "Map Screen Test"
 
+GAME_TILE_WIDTH = (SCREEN_WIDTH - (SCREEN_WIDTH*.1))/11
+GAME_TILE_HEIGHT = (SCREEN_HEIGHT - (SCREEN_HEIGHT*.1))/11
+
+VERTICAL_MARGIN_PERCENT = 0.010
+HORIZONTAL_MARGIN_PERCENT = 0.010
+
+VERTICAL_BORDER_PERCENT = .1
+HORIZONTAL_BORDER_PERCENT = .0909
+
+# ROW01_Y = 
+
+
 # top/bottom/right/left margin = 5%
 # tile spacing = ??
 # tile size = ??
@@ -73,6 +85,7 @@ class MyGame(arcade.Window):
 
         arcade.set_background_color(arcade.color.GRAY_BLUE)
 
+
     def setup(self):
         """ Set up the game here. Call this function to restart the game. """
         pass
@@ -81,6 +94,27 @@ class MyGame(arcade.Window):
         """ Render the screen. """
         # Clear the screen
         arcade.start_render()
+        # arcade.draw_rectangle_filled(
+        #     (HORIZONTAL_BORDER_PERCENT*SCREEN_WIDTH)/2  , 
+        #     100, GAME_TILE_WIDTH, GAME_TILE_HEIGHT, 
+        #     arcade.csscolor.AZURE)
+
+        # arcade.draw_rectangle_filled(
+        #     (HORIZONTAL_BORDER_PERCENT*SCREEN_WIDTH)/2 + GAME_TILE_WIDTH + SCREEN_WIDTH*HORIZONTAL_MARGIN_PERCENT , 
+        #     100, GAME_TILE_WIDTH, GAME_TILE_HEIGHT, 
+        #     arcade.csscolor.AZURE)
+        distance = (HORIZONTAL_BORDER_PERCENT * SCREEN_WIDTH)/2 - (HORIZONTAL_MARGIN_PERCENT*SCREEN_WIDTH)/2
+        
+        for i in range(10):
+            
+            arcade.draw_rectangle_filled(
+            (HORIZONTAL_BORDER_PERCENT*SCREEN_WIDTH)/2 + distance , 
+            100, GAME_TILE_WIDTH, GAME_TILE_HEIGHT, 
+            arcade.csscolor.AZURE)
+            distance += GAME_TILE_WIDTH + SCREEN_WIDTH*HORIZONTAL_MARGIN_PERCENT
+
+
+
 
     def on_mouse_press(self, x, y, button, key_modifiers):
         """ Called when the user presses a mouse button. """
@@ -102,10 +136,16 @@ def main():
     """ Main method """
     window = MyGame()
     window.setup()
+
+    # game = EgohBattleShipGame()
+    # testGameTile01 = GameTile("A", 3)
+    # game.placeGameTile(testGameTile01)
+
     arcade.run()
 
 
 if __name__ == "__main__":
+  
     main()
 
 

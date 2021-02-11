@@ -53,7 +53,10 @@ class TestEgohBattleShip(unittest.TestCase):
         self.assertIn(gameTile01, game.tileList)
 
         # test that the time is at the correct position
-        # ??
+        self.assertTrue(gameTile01.column == "A")
+        self.assertTrue(gameTile01.row == 3)
+        
+        # what is in that position
 
 
 
