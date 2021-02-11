@@ -15,18 +15,91 @@ Salvo = number of your ships you have left (use count)/1 shot(easy)
 import arcade
 
 
-# SCREEN_WIDTH = 640
-# SCREEN_HEIGHT = 480
+# Screen title and size
+SCREEN_WIDTH = 1024
+SCREEN_HEIGHT = 768
+SCREEN_TITLE = "Map Screen Test"
 
-class EgohBattleShipGame:
+GAME_TILE_WIDTH = (SCREEN_WIDTH - (SCREEN_WIDTH*.1))/11
+GAME_TILE_HEIGHT = (SCREEN_HEIGHT - (SCREEN_HEIGHT*.1))/11
+
+VERTICAL_SPACING_PERCENT = 0.010
+HORIZONTAL_SPACING_PERCENT = 0.010
+
+VERTICAL_BORDER_PERCENT = .1
+HORIZONTAL_BORDER_PERCENT = .0909
+
+
+class EgohBattleShipGame(arcade.Window):
+
+    #  """ Main application class. """
 
     def __init__(self):
-        
+
+        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+
+        arcade.set_background_color(arcade.color.GRAY_BLUE)
+
         self.ship = {"Type" : "AircraftCarrier",
-                     "MaxHits": 5,
-                     "CurrentDamage": 0}
+                        "MaxHits": 5,
+                        "CurrentDamage": 0}
         self.players = []
         self.tileList = []
+
+    def setup(self):
+        """ Set up the game here. Call this function to restart the game. """
+
+        
+        pass
+
+    def on_draw(self):
+        """ Render the screen. """
+        # Clear the screen
+        arcade.start_render()
+        # test = arcade.draw_rectangle_filled(
+        #     (HORIZONTAL_BORDER_PERCENT*SCREEN_WIDTH)/2  , 
+        #     100, GAME_TILE_WIDTH, GAME_TILE_HEIGHT, 
+        #     arcade.csscolor.AZURE)
+        
+        
+       
+        # arcade.draw_rectangle_filled(
+        #     (HORIZONTAL_BORDER_PERCENT*SCREEN_WIDTH)/2 + GAME_TILE_WIDTH + SCREEN_WIDTH*HORIZONTAL_MARGIN_PERCENT , 
+        #     100, GAME_TILE_WIDTH, GAME_TILE_HEIGHT, 
+        #     arcade.csscolor.AZURE)
+        # distance = (HORIZONTAL_BORDER_PERCENT * SCREEN_WIDTH)/2 - (HORIZONTAL_SPACING_PERCENT*SCREEN_WIDTH)/2
+        
+        
+        newTile = self.createGameTile()
+        # game.createGameTile().draw()
+        newTile.position = 200, 200
+        newTile.draw()
+
+        # for i in range(10):
+            
+        #     arcade.draw_rectangle_filled(
+        #     (HORIZONTAL_BORDER_PERCENT*SCREEN_WIDTH)/2 + distance , 
+        #     100, GAME_TILE_WIDTH, GAME_TILE_HEIGHT, 
+        #     arcade.csscolor.AZURE)
+        #     distance += GAME_TILE_WIDTH + SCREEN_WIDTH*HORIZONTAL_SPACING_PERCENT
+
+        # pile = arcade.SpriteSolidColor(int(GAME_TILE_WIDTH), int(GAME_TILE_HEIGHT), arcade.csscolor.DARK_OLIVE_GREEN)
+        # pile.position = 200, 200    
+        # pile.draw()
+
+
+    def on_mouse_press(self, x, y, button, key_modifiers):
+        """ Called when the user presses a mouse button. """
+        pass
+
+    def on_mouse_release(self, x: float, y: float, button: int,
+                         modifiers: int):
+        """ Called when the user presses a mouse button. """
+        pass
+
+    def on_mouse_motion(self, x: float, y: float, dx: float, dy: float):
+        """ User moves mouse """
+        pass
 
     def addPlayer(self, name: str):
 
@@ -43,6 +116,17 @@ class EgohBattleShipGame:
         newTileList = self.tileList.copy()
         self.tileList.append(gametile)
 
+    def createGameTile(self):
+
+        distance = (HORIZONTAL_BORDER_PERCENT * SCREEN_WIDTH)/2 - (HORIZONTAL_SPACING_PERCENT*SCREEN_WIDTH)/2
+        
+        newTile = arcade.SpriteSolidColor(
+            int(GAME_TILE_WIDTH), int(GAME_TILE_HEIGHT), 
+            arcade.csscolor.AZURE)
+
+        return newTile
+
+
 
 class GameTile:
     
@@ -52,94 +136,19 @@ class GameTile:
 
 
 
-
-
-
-# Screen title and size
-SCREEN_WIDTH = 1024
-SCREEN_HEIGHT = 768
-SCREEN_TITLE = "Map Screen Test"
-
-GAME_TILE_WIDTH = (SCREEN_WIDTH - (SCREEN_WIDTH*.1))/11
-GAME_TILE_HEIGHT = (SCREEN_HEIGHT - (SCREEN_HEIGHT*.1))/11
-
-VERTICAL_MARGIN_PERCENT = 0.010
-HORIZONTAL_MARGIN_PERCENT = 0.010
-
-VERTICAL_BORDER_PERCENT = .1
-HORIZONTAL_BORDER_PERCENT = .0909
-
-# ROW01_Y = 
-
-
 # top/bottom/right/left margin = 5%
 # tile spacing = ??
 # tile size = ??
 
-
-class MyGame(arcade.Window):
-    """ Main application class. """
-
-    def __init__(self):
-        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-
-        arcade.set_background_color(arcade.color.GRAY_BLUE)
-
-
-    def setup(self):
-        """ Set up the game here. Call this function to restart the game. """
-        pass
-
-    def on_draw(self):
-        """ Render the screen. """
-        # Clear the screen
-        arcade.start_render()
-        # arcade.draw_rectangle_filled(
-        #     (HORIZONTAL_BORDER_PERCENT*SCREEN_WIDTH)/2  , 
-        #     100, GAME_TILE_WIDTH, GAME_TILE_HEIGHT, 
-        #     arcade.csscolor.AZURE)
-
-        # arcade.draw_rectangle_filled(
-        #     (HORIZONTAL_BORDER_PERCENT*SCREEN_WIDTH)/2 + GAME_TILE_WIDTH + SCREEN_WIDTH*HORIZONTAL_MARGIN_PERCENT , 
-        #     100, GAME_TILE_WIDTH, GAME_TILE_HEIGHT, 
-        #     arcade.csscolor.AZURE)
-        distance = (HORIZONTAL_BORDER_PERCENT * SCREEN_WIDTH)/2 - (HORIZONTAL_MARGIN_PERCENT*SCREEN_WIDTH)/2
-        
-        for i in range(10):
-            
-            arcade.draw_rectangle_filled(
-            (HORIZONTAL_BORDER_PERCENT*SCREEN_WIDTH)/2 + distance , 
-            100, GAME_TILE_WIDTH, GAME_TILE_HEIGHT, 
-            arcade.csscolor.AZURE)
-            distance += GAME_TILE_WIDTH + SCREEN_WIDTH*HORIZONTAL_MARGIN_PERCENT
-
-
-
-
-    def on_mouse_press(self, x, y, button, key_modifiers):
-        """ Called when the user presses a mouse button. """
-        pass
-
-    def on_mouse_release(self, x: float, y: float, button: int,
-                         modifiers: int):
-        """ Called when the user presses a mouse button. """
-        pass
-
-    def on_mouse_motion(self, x: float, y: float, dx: float, dy: float):
-        """ User moves mouse """
-        pass
 
 
 
 
 def main():
     """ Main method """
-    window = MyGame()
+    window = EgohBattleShipGame()
     window.setup()
 
-    # game = EgohBattleShipGame()
-    # testGameTile01 = GameTile("A", 3)
-    # game.placeGameTile(testGameTile01)
 
     arcade.run()
 
