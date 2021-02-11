@@ -26,6 +26,7 @@ class EgohBattleShipGame:
                      "MaxHits": 5,
                      "CurrentDamage": 0}
         self.players = []
+        self.tileList = []
 
     def addPlayer(self, name: str):
 

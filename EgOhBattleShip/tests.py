@@ -47,10 +47,10 @@ class TestEgohBattleShip(unittest.TestCase):
         game = self.game
 
         gameTile01 = gameFolder.GameTile("A", 3)
-        # game.placeGameTile(gameTile01)
+        game.placeGameTile(gameTile01)
 
         # test that the tile is on the board
-        # self.assertIn(gameTile01, game.tileList)
+        self.assertIn(gameTile01, game.tileList)
 
         # test that the time is at the correct position
         # ??
