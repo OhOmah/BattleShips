@@ -16,7 +16,31 @@ class TestEgohBattleShip(unittest.TestCase):
         # 1 x Cruiser, Size 3
         # 2 x Destroyer, Size 2
         # 2 x Submarine, Size 1
+    def setUp(self):
+        self.game = gameFolder.EgohBattleShipGame()
 
+
+    def testAddPlayersToGame(self):
+
+        game = self.game
+
+        self.game.addPlayer("Omar")
+        self.game.addPlayer("Erle")
+
+        self.assertEqual(game.players, ["Omar", "Erle"])
+        self.assertEqual(len(game.players), 2)
+
+        # A game can not have more than 2 players
+        self.game.addPlayer("Tim")
+        self.assertEqual(len(game.players), 2)
+    
+
+    # def testPrimaryGridSize(self):
+    #     # the map is made up of 10 x 10 squares
+
+    #     # a square is Azure, it has a row (1-10) and column (id)
+    #     game = gameFolder.EgohBattleShipGame()
+    #     primaryGrid = game.player01.PrimaryGrid()
 
 
     
@@ -34,7 +58,6 @@ class TestEgohBattleShip(unittest.TestCase):
         self.assertEqual(acCarrier["CurrentDamage"], 0)
         self.assertEqual(acCarrier["Type"], "AircraftCarrier")
     
-    def testDamageShip(self):
         
 
 
