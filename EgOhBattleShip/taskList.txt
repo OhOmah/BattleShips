@@ -21,6 +21,8 @@ Tests
     From Feature Tasks, use TDD to write code
     Create Game - grid size, 2 players per game
     Create Player - DS stats 
+        Fleet(his ships)
+        TurnState ()??
     Create Board - 10x10 (letters, 1-10)
     Create Ships - 1(5) 1(4) 1(3) 2(2) 2(1)
         # 1 x Aircraft Carrier, Size 5
@@ -30,5 +32,8 @@ Tests
         2 x Submarine, Size 1
 
     Damage Ships 
+    # Add players to game
+    
+    Create GameTile(water, ship, hit, miss, damaged)
 
 Create GitHub Repo

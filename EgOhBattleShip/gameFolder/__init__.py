@@ -20,8 +20,6 @@ import arcade
 
 class EgohBattleShipGame:
 
-    
-
     def __init__(self):
         
         self.ship = {"Type" : "AircraftCarrier",
@@ -39,10 +37,17 @@ class EgohBattleShipGame:
 
         return self.ship
 
-    # a ship is a dict
-    # type: 
-    # maxHits: 
-    # currentHealth: 
+    def placeGameTile(self, gametile):
+
+        newTileList = self.tileList.copy()
+        self.tileList.append(gametile)
+
+
+class GameTile:
+    
+    def __init__(self, column: chr, row: int): 
+        self.column = column
+        self.row = row
 
 
 
@@ -53,6 +58,11 @@ class EgohBattleShipGame:
 SCREEN_WIDTH = 1024
 SCREEN_HEIGHT = 768
 SCREEN_TITLE = "Map Screen Test"
+
+# top/bottom/right/left margin = 5%
+# tile spacing = ??
+# tile size = ??
+
 
 class MyGame(arcade.Window):
     """ Main application class. """
