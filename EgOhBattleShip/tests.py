@@ -1,21 +1,13 @@
-import unittest
+import arcade
+import gameFolder
 import random
 
-import gameFolder
+import unittest
 
 
 class TestEgohBattleShip(unittest.TestCase):
 
 
-    # def testPlayerShipCount(self): # maybe I should be testing 
-                                # entire player initialization
-
-        # each player should start with 7 ships
-        # 1 x Aircraft Carrier, Size 5
-        # 1 x Battleship, Size 4
-        # 1 x Cruiser, Size 3
-        # 2 x Destroyer, Size 2
-        # 2 x Submarine, Size 1
     def setUp(self):
         """
         Method called to prepare the test fixture. This is called 
@@ -24,7 +16,7 @@ class TestEgohBattleShip(unittest.TestCase):
         test failure. The default implementation does nothing.
         """
         self.game = gameFolder.EgohBattleShipGame()
-
+        self.game.setup()
 
     def testAddPlayersToGame(self):
 
@@ -40,13 +32,26 @@ class TestEgohBattleShip(unittest.TestCase):
         self.game.addPlayer("Tim")
         self.assertEqual(len(game.players), 2)
     
+    # def testPlayerShipCount(self): # maybe I should be testing 
+                                # entire player initialization
+
+        # each player should start with 7 ships
+        # 1 x Aircraft Carrier, Size 5
+        # 1 x Battleship, Size 4
+        # 1 x Cruiser, Size 3
+        # 2 x Destroyer, Size 2
+        # 2 x Submarine, Size 1
+
+
     def testCreateGameTile(self):
 
         # the game tile can be placed on the grid
         # according to it's x and y - A3
         game = self.game
-        game.setup()
-        gameTile01 = game.createGameTile("A", "3")
+       
+        gameTile01 = game.createGameTile("ship", "A", "3")
+       
+        
         game.placeGameTile(gameTile01)
 
         # test that the tile is in the game
@@ -60,11 +65,27 @@ class TestEgohBattleShip(unittest.TestCase):
 
         self.assertEqual(gameTile01.shape.position, (SCREEN_WIDTH*.14, SCREEN_HEIGHT*.32))
 
-    
+    def testCreateWaterTile(self):
+        game = self.game
+
+        gameTile01 = game.createGameTile("water", "A", "3")
+        
+        
+        arcade.start_render()
+        gameTile01.shape.draw()
+       
+        print(gameTile01.shape.color)
+        
+
+
+        self.assertTrue(gameTile01.type == "water")
+        self.assertTrue(gameTile01.shape.color == (240, 255, 255))
+
+
     def testFullGameMap(self):
 
         game = self.game
-        game.setup()
+        # game.setup()
         columns = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
         rows = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 
@@ -72,19 +93,11 @@ class TestEgohBattleShip(unittest.TestCase):
         for column in columns:
             for row in rows:
                 if (column, row) not in tilesCreated:
-                    gameTile = game.createGameTile(column, row)
+                    gameTile = game.createGameTile("hit", column, row)
                     game.placeGameTile(gameTile)
                     tilesCreated.add((column, row))
         
         self.assertEqual(len(tilesCreated), 100)
-       
-
-    # def testPrimaryGridSize(self):
-    #     # the map is made up of 10 x 10 squares
-
-    #     # a square is Azure, it has a row (1-10) and column (id)
-    #     game = gameFolder.EgohBattleShipGame()
-    #     primaryGrid = game.player01.PrimaryGrid()
 
 
     def testCreateAircraftCarrier(self):

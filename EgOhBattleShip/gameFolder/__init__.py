@@ -115,10 +115,11 @@ class EgohBattleShipGame(arcade.Window):
 
         return self.ship
 
-    def createGameTile(self, column, row):
+    def createGameTile(self, type, column, row):
 
         # distance = (HORIZONTAL_BORDER_PERCENT * SCREEN_WIDTH)/2 - (HORIZONTAL_SPACING_PERCENT*SCREEN_WIDTH)/2
-        gameTile = GameTile(column, row)
+        gameTile = GameTile(type, column, row)
+       
         return gameTile
        
     def placeGameTile(self, gametile):
@@ -160,17 +161,29 @@ yPositionDict = {"1": .05+1*.09,
 
 class GameTile:
     
+    def __init__(self, tileType, column: chr, row: int): 
 
-    def __init__(self, column: chr, row: int): 
+        typeDict = {
+            "water": arcade.csscolor.AZURE,
+            "ship" : arcade.csscolor.DIM_GREY,
+            "hit" : arcade.csscolor.DARK_RED,
+            "miss" : arcade.csscolor.BLACK,
+            "damaged" : arcade.csscolor.DARK_ORANGE
+        }
+            
+        self.type = tileType
 
         self.column = column
         self.row = row
+
         self.x_pos = xPositionDict[column]*SCREEN_WIDTH
         self.y_pos = yPositionDict[row]*SCREEN_HEIGHT
+
         self.shape = arcade.SpriteSolidColor(
             int(GAME_TILE_WIDTH), int(GAME_TILE_HEIGHT), 
-            arcade.csscolor.AZURE)
+            typeDict[tileType])
         self.shape.position = self.x_pos, self.y_pos
+        
         
 
 
@@ -188,8 +201,8 @@ def main():
     window = EgohBattleShipGame()
     window.setup()
     
-    newTile = window.createGameTile("A", "3")
-    window.newTileList.append(newTile.shape)
+    # newTile = window.createGameTile("A", "3")
+    # window.newTileList.append(newTile.shape)
 
     columns = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
     rows = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
@@ -198,7 +211,7 @@ def main():
     for column in columns:
         for row in rows:
             if (column, row) not in tilesCreated:
-                gameTile = window.createGameTile(column, row)
+                gameTile = window.createGameTile("hit", column, row)
                 window.placeGameTile(gameTile)
                 tilesCreated.add((column, row))
 
