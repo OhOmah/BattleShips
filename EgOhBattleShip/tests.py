@@ -73,10 +73,9 @@ class TestEgohBattleShip(unittest.TestCase):
         
         arcade.start_render()
         gameTile01.shape.draw()
-       
-        print(gameTile01.shape.color)
-        
 
+        ## Don't know why this test is failing
+        print(gameTile01.shape.color)
 
         self.assertTrue(gameTile01.type == "water")
         self.assertTrue(gameTile01.shape.color == (240, 255, 255))
@@ -106,15 +105,25 @@ class TestEgohBattleShip(unittest.TestCase):
         # position on the board - extends on legal positions;
         #   not overlapping with other ships
         # remaining hits?
-        game = gameFolder.EgohBattleShipGame()
-        acCarrier = gameFolder.EgohBattleShipGame.createACCarrier(game)
+        game = self.game
+        acCarrier = game.createShip("AircraftCarrier")
 
         #test the maxhits of a Aircraft Carrier
-        self.assertEqual(acCarrier["MaxHits"], 5)
-        self.assertEqual(acCarrier["CurrentDamage"], 0)
-        self.assertEqual(acCarrier["Type"], "AircraftCarrier")
+        self.assertEqual(acCarrier.size, 5)
+        self.assertEqual(acCarrier.damage, 0)
+        self.assertEqual(acCarrier.type, "AircraftCarrier")
     
+    def testCreateBattleShip(self):
+
+        game = self.game
         
+        bShip = game.createShip("Battleship")
+        # pla.rotateShip(bShip)
+        # game.placeShip(bShip)
+
+        self.assertEqual(bShip.size, 4)
+        self.assertEqual(bShip.damage, 0)
+        self.assertEqual(bShip.type, "Battleship")
 
 
 if __name__ == "__main__":

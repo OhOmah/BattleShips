@@ -23,7 +23,7 @@ Tests
     Create Player - DS stats 
         Fleet(his ships)
         TurnState ()??
-        
+
     Create Board - 
         placement grid 10x10 (letters, 1-10)
         attack Grid ""      ""      ""      ""
@@ -34,15 +34,18 @@ Tests
         1 x Cruiser, Size 3
         2 x Destroyer, Size 2
         2 x Submarine, Size 1
+    
+    Rotate ship
+    Place Ship
 
     Damage Ships 
     # Add players to game
     
     Create GameTile
         # water, blue
-        ship, gray
-        hit, red
-        miss, black
-        damaged orange
+        #ship, gray
+        #hit, red
+        #miss, black
+        # damaged orange
 
 Create GitHub Repo

@@ -40,9 +40,6 @@ class EgohBattleShipGame(arcade.Window):
 
         arcade.set_background_color(arcade.color.GRAY_BLUE)
 
-        self.ship = {"Type" : "AircraftCarrier",
-                        "MaxHits": 5,
-                        "CurrentDamage": 0}
         self.players = []
         self.tileList = []
         self.newTileList = None
@@ -111,9 +108,20 @@ class EgohBattleShipGame(arcade.Window):
             self.players.append(name)
         
 
-    def createACCarrier(self):
+    # def createACCarrier(self):
 
-        return self.ship
+    #     newShip = Ship("AircraftCarrier")
+    #     return newShip
+
+    # def createBattleShip(self):
+
+    #     newShip = Ship("Battleship")
+    #     return newShip
+
+    def createShip(self, type):
+
+        newShip = Ship(type)
+        return newShip    
 
     def createGameTile(self, type, column, row):
 
@@ -132,37 +140,54 @@ class EgohBattleShipGame(arcade.Window):
         self.tileList = tempTileList
 
 
+class Ship:
+
+    def __init__(self, type):
         
+        shipDict = {
+            "AircraftCarrier": 5,
+            "Battleship" : 4,
+            "Cruiser" : 3,
+            "Destroyer" : 2,
+            "Submarine" : 1
+            }
+
+        self.type = type
+        self.size = shipDict[type]
+        self.damage = 0 
 
 
-xPositionDict = {"A": .05+1*.09,
-                "B": .05+2*.09,
-                "C": .05+3*.09,
-                "D": .05+4*.09,
-                "E": .05+5*.09,
-                "F": .05+6*.09,
-                "G": .05+7*.09,
-                "H": .05+8*.09,
-                "I": .05+9*.09,
-                "J": .05+10*.09,
-                }
 
-yPositionDict = {"1": .05+1*.09,
-                "2": .05+2*.09,
-                "3" : .05+3*.09,
-                "4": .05+4*.09,
-                "5": .05+5*.09,
-                "6": .05+6*.09,
-                "7": .05+7*.09,
-                "8": .05+8*.09,
-                "9": .05+9*.09,
-                "10": .05+10*.09,
-                }
+
 
 class GameTile:
     
     def __init__(self, tileType, column: chr, row: int): 
 
+
+        xPositionDict = {"A": .05+1*.09,
+                        "B": .05+2*.09,
+                        "C": .05+3*.09,
+                        "D": .05+4*.09,
+                        "E": .05+5*.09,
+                        "F": .05+6*.09,
+                        "G": .05+7*.09,
+                        "H": .05+8*.09,
+                        "I": .05+9*.09,
+                        "J": .05+10*.09,
+                        }
+
+        yPositionDict = {"1": .05+1*.09,
+                        "2": .05+2*.09,
+                        "3" : .05+3*.09,
+                        "4": .05+4*.09,
+                        "5": .05+5*.09,
+                        "6": .05+6*.09,
+                        "7": .05+7*.09,
+                        "8": .05+8*.09,
+                        "9": .05+9*.09,
+                        "10": .05+10*.09,
+                        }
         typeDict = {
             "water": arcade.csscolor.AZURE,
             "ship" : arcade.csscolor.DIM_GREY,
