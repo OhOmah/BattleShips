@@ -107,17 +107,6 @@ class EgohBattleShipGame(arcade.Window):
         if len(self.players) < 2:
             self.players.append(name)
         
-
-    # def createACCarrier(self):
-
-    #     newShip = Ship("AircraftCarrier")
-    #     return newShip
-
-    # def createBattleShip(self):
-
-    #     newShip = Ship("Battleship")
-    #     return newShip
-
     def createShip(self, type):
 
         newShip = Ship(type)
@@ -155,8 +144,6 @@ class Ship:
         self.type = type
         self.size = shipDict[type]
         self.damage = 0 
-
-
 
 
 
