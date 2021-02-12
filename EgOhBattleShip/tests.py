@@ -40,26 +40,44 @@ class TestEgohBattleShip(unittest.TestCase):
         self.game.addPlayer("Tim")
         self.assertEqual(len(game.players), 2)
     
-    def testPlaceGameTile(self):
+    def testCreateGameTile(self):
 
         # the game tile can be placed on the grid
         # according to it's x and y - A3
         game = self.game
-
-        gameTile01 = gameFolder.GameTile("A", 3)
+        game.setup()
+        gameTile01 = game.createGameTile("A", "3")
         game.placeGameTile(gameTile01)
 
-        # test that the tile is on the board
+        # test that the tile is in the game
         self.assertIn(gameTile01, game.tileList)
 
         # test that the time is at the correct position
+        SCREEN_WIDTH = 1024
+        SCREEN_HEIGHT = 768
         self.assertTrue(gameTile01.column == "A")
-        self.assertTrue(gameTile01.row == 3)
+        self.assertTrue(gameTile01.row == "3")
+
+        self.assertEqual(gameTile01.shape.position, (SCREEN_WIDTH*.14, SCREEN_HEIGHT*.32))
+
+    
+    def testFullGameMap(self):
+
+        game = self.game
+        game.setup()
+        columns = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+        rows = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+
+        tilesCreated = set()
+        for column in columns:
+            for row in rows:
+                if (column, row) not in tilesCreated:
+                    gameTile = game.createGameTile(column, row)
+                    game.placeGameTile(gameTile)
+                    tilesCreated.add((column, row))
         
-        # what is in that position
-
-
-
+        self.assertEqual(len(tilesCreated), 100)
+       
 
     # def testPrimaryGridSize(self):
     #     # the map is made up of 10 x 10 squares
