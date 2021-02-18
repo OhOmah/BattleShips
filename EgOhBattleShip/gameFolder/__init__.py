@@ -75,17 +75,7 @@ class EgohBattleShipGame(arcade.Window):
         # newTile02.shape.draw()
         # newTile03 = self.createGameTile("D", "8")
         # newTile03.shape.draw()
-        # columns = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
-        # rows = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-
-        # tilesCreated = set()
-        # for column in columns:
-        #     for row in rows:
-        #         if (column, row) not in tilesCreated:
-        #             gameTile = self.createGameTile(column, row)
-        #             self.placeGameTile(gameTile)
-        #             tilesCreated.add((column, row))
-        #             gameTile.shape.draw()
+       
 
 
 
@@ -114,9 +104,7 @@ class EgohBattleShipGame(arcade.Window):
 
     def createGameTile(self, type, column, row):
 
-        # distance = (HORIZONTAL_BORDER_PERCENT * SCREEN_WIDTH)/2 - (HORIZONTAL_SPACING_PERCENT*SCREEN_WIDTH)/2
         gameTile = GameTile(type, column, row)
-       
         return gameTile
        
     def placeGameTile(self, gametile):
@@ -146,11 +134,9 @@ class Ship:
         self.damage = 0 
 
 
-
 class GameTile:
     
     def __init__(self, tileType, column: chr, row: int): 
-
 
         xPositionDict = {"A": .05+1*.09,
                         "B": .05+2*.09,
@@ -196,16 +182,6 @@ class GameTile:
             typeDict[tileType])
         self.shape.position = self.x_pos, self.y_pos
         
-        
-
-
-
-# top/bottom/right/left margin = 5%
-# tile spacing = ??
-# tile size = ??
-
-
-
 
 
 def main():

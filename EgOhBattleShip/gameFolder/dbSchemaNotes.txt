@@ -1,0 +1,7 @@
+As far as I know right now a table should consist of the smallest
+unit that still has semantic value - meaning.
+
+(Table  PrimaryKey  columns)
+Player player_id, wins, losses, games?
+Game game_id, Player1, Player2, winner, Player_Pending_Action, TotalLength TotalTurns
+Turn turn_id, sequence_number, player, time_elapsed, coordinate_chosen, result, hit_result
